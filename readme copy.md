@@ -1,1 +1,0 @@
-mui pliq ridmi
