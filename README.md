@@ -1,2 +1,1 @@
 # mui pliq ridmi
- 
