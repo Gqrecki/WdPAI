@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: #34495e;
+    font-weight: 600;
+}
+
+nav a {
+    margin-left: 25px;
+    text-decoration: none;
+    color: #7f8c8d;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #3498db;
+}
+
+/* Sortowanie */
+.sort-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sort-section label {
+    font-weight: 500;
+    color: #34495e;
+}
+
+.sort-section select {
+    padding: 10px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    background-color: #f9fbfd;
+    color: #2c3e50;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.sort-section select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Logowanie/Rejestracja */
+.auth-box {
+    max-width: 450px;
+    margin: 60px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+.auth-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.auth-box input, .admin-module input, .drink-rating input, textarea, select {
+    padding: 12px;
+    border: 1px solid #dfe6e9;
+    border-radius: 8px;
+    background-color: #f9fbfd;
+    transition: border-color 0.3s ease;
+}
+
+.auth-box input:focus, .admin-module input:focus, .drink-rating input:focus, textarea:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+/* Przyciski */
+button {
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Karty na stronie głównej */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.drink-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.drink-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.drink-card h2 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.drink-card p {
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.drink-card a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.drink-card a:hover {
+    color: #2980b9;
+}
+
+/* Panel administracyjny */
+.admin-panel {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.admin-module {
+    background-color: #f9fbfd;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-module h2 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.admin-module form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.user-management p {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Strona trunku */
+.drink-details {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.drink-info, .drink-rating, .drink-comments {
+    padding: 20px;
+    background-color: #f9fbfd;
+    border-radius: 10px;
+}
+
+.drink-info h2, .drink-rating h3, .drink-comments h3 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.drink-info button {
+    margin-top: 15px;
+}
+
+.drink-rating form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.drink-comments p {
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+/* Profil użytkownika */
+.user-profile {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.user-info, .user-favorites, .user-ratings {
+    padding: 20px;
+    background-color: #f9fbfd;
+    border-radius: 10px;
+}
+
+.user-info h2, .user-favorites h3, .user-ratings h3 {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.user-favorites p, .user-ratings p {
+    margin: 10px 0;
+    color: #7f8c8d;
+}
+
+/* Wyszukiwanie */
+.search-panel {
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-panel form {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.user-card {
+    background-color: #f9fbfd;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.user-card:hover {
+    transform: translateY(-3px);
+}
+
+.user-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.user-card p {
+    color: #7f8c8d;
+    font-size: 0.95rem;
+}
+
+.user-card a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.user-card a:hover {
+    text-decoration: underline;
+}
+
+/* Responsywność */
+@media (max-width: 800px) {
+    .drink-details, .user-profile, .admin-grid {
+        grid-template-columns: 1fr;
+    }
