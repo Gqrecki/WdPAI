@@ -17,7 +17,6 @@ body {
     padding: 30px;
 }
 
-/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -47,7 +46,6 @@ nav a:hover {
     color: #3498db;
 }
 
-/* Sortowanie */
 .sort-section {
     display: flex;
     align-items: center;
@@ -80,7 +78,6 @@ nav a:hover {
     outline: none;
 }
 
-/* Logowanie/Rejestracja */
 .auth-box {
     max-width: 450px;
     margin: 60px auto;
@@ -115,7 +112,6 @@ nav a:hover {
     outline: none;
 }
 
-/* Przyciski */
 button {
     padding: 12px;
     background-color: #3498db;
@@ -131,7 +127,6 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Karty na stronie głównej */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -175,7 +170,6 @@ button:hover {
     color: #2980b9;
 }
 
-/* Panel administracyjny */
 .admin-panel {
     margin-top: 20px;
     background-color: #ffffff;
@@ -215,7 +209,6 @@ button:hover {
     align-items: center;
 }
 
-/* Strona trunku */
 .drink-details {
     margin-top: 20px;
     background-color: #ffffff;
@@ -253,7 +246,6 @@ button:hover {
     color: #7f8c8d;
 }
 
-/* Profil użytkownika */
 .user-profile {
     margin-top: 20px;
     background-color: #ffffff;
@@ -281,7 +273,6 @@ button:hover {
     color: #7f8c8d;
 }
 
-/* Wyszukiwanie */
 .search-panel {
     margin-top: 20px;
     background-color: #ffffff;
@@ -335,8 +326,43 @@ button:hover {
     text-decoration: underline;
 }
 
-/* Responsywność */
 @media (max-width: 800px) {
     .drink-details, .user-profile, .admin-grid {
         grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+        gap: 10px;
+    }
+    header h1 {
+        font-size: 1.5rem;
+    }
+    nav {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        width: 100%;
+        gap: 15px;
+        padding: 5px 0;
+    }
+    nav a {
+        margin-left: 0;
+        white-space: nowrap;
+        padding: 5px 10px;
+    }
+    .container {
+        padding: 15px;
+    }
+    .drink-card, .user-card {
+        padding: 20px;
+    }
+    .sort-section {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+}
