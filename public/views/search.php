@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wyszukiwanie Użytkowników</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="public/styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -12,10 +12,10 @@
         <header>
             <h1>DrinkAdvisor</h1>
             <nav>
-                <a href="home.html">Strona Główna</a>
-                <a href="user.html">Profil</a>
-                <a href="search.html">Znajdź znajomych</a>
-                <a href="admin.html">Panel Admina</a>
+                <a href="home">Strona Główna</a>
+                <a href="user">Profil</a>
+                <a href="search">Znajdź znajomych</a>
+                <a href="admin">Panel Admina</a>
             </nav>
         </header>
         <div class="search-panel">
