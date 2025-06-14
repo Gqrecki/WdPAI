@@ -1,18 +1,20 @@
 <?php
 
 class User{
-    private $email;
+    private $login;
     private $password;
+    private $role;
 
-    public function __construct($email, $password)
+    public function __construct($login, $password, $role = 'user', $isHashed = false)
     {
-        $this->email = $email;
-        $this->password = $password;
+        $this->login = $login;
+        $this->password = $isHashed ? $password : password_hash($password, PASSWORD_DEFAULT);
+        $this->role = $role;
     }
 
-    public function getEmail()
+    public function getLogin()
     {
-        return $this->email;
+        return $this->login;
     }
 
     public function getPassword()
@@ -20,13 +22,23 @@ class User{
         return $this->password;
     }
 
-    public function setEmail($email)
+    public function getRole()
     {
-        $this->email = $email;
+        return $this->role;
     }
 
-    public function setPassword($password)
+    public function setLogin($login)
     {
-        $this->password = $password;
+        $this->login = $login;
+    }
+
+    public function setPassword($password, $isHashed = false)
+    {
+        $this->password = $isHashed ? $password : password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }

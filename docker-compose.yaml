@@ -19,7 +19,14 @@ services:
       context: .
       dockerfile: docker/db/Dockerfile
     ports:
-      - "5433:5432"
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./app/sql:/docker-entrypoint-initdb.d 
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: db
     networks:
       - pg-network
   

@@ -1,3 +1,44 @@
+<?php
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+    header('Location: login');
+    exit();
+}
+require_once __DIR__ . '/../../Database.php';
+$db = Database::connect();
+
+$drinks = $db->query('SELECT * FROM drinks')->fetchAll(PDO::FETCH_ASSOC);
+$users = $db->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
+
+if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+    header('Content-Type: text/csv; charset=utf-8');
+    header('Content-Disposition: attachment; filename=export.csv');
+    $output = fopen('php://output', 'w');
+    fputcsv($output, ['Trunki']);
+    fputcsv($output, ['id', 'name', 'volume', 'alcohol_content', 'price_range', 'description']);
+    foreach($drinks as $drink) {
+        fputcsv($output, [
+            $drink['id'],
+            $drink['name'],
+            $drink['volume'],
+            $drink['alcohol_content'],
+            $drink['price_range'],
+            $drink['description']
+        ]);
+    }
+    fputcsv($output, []);
+    fputcsv($output, ['Użytkownicy']);
+    fputcsv($output, ['id', 'login', 'role']);
+    foreach($users as $user) {
+        fputcsv($output, [
+            $user['id'],
+            $user['login'],
+            $user['role']
+        ]);
+    }
+    fclose($output);
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -16,43 +57,53 @@
                 <a href="user">Profil</a>
                 <a href="search">Znajdź znajomych</a>
                 <a href="admin">Panel Admina</a>
+                <a href="logout">Wyloguj się</a>
             </nav>
         </header>
         <div class="admin-panel">
+            <div style="margin-bottom:20px;">
+                <form method="get" action="admin" style="display:inline;">
+                    <button type="submit" name="export" value="csv">Eksportuj dane do CSV</button>
+                </form>
+            </div>
             <div class="admin-grid">
                 <div class="admin-module">
                     <h2>Dodaj trunek</h2>
-                    <form>
-                        <input type="text" placeholder="Nazwa trunku" required>
-                        <input type="text" placeholder="Objętość (np. 0.5L)" required>
-                        <input type="text" placeholder="Zawartość alkoholu (np. 40%)" required>
-                        <input type="text" placeholder="Cena oscylacyjna (np. 35-45 zł)" required>
-                        <textarea placeholder="Opis trunku"></textarea>
-                        <button type="submit">Dodaj</button>
+                    <form action="admin" method="POST">
+                        <input type="text" name="name" placeholder="Nazwa trunku" required>
+                        <input type="number" name="volume" placeholder="Objętość [L]" required>
+                        <input type="number" name="alcohol_content" placeholder="Zawartość alkoholu [%]" required min="0" max="100">
+                        <input type="number" name="price_range" placeholder="Cena oscylacyjna [zł]" required>
+                        <textarea name="description" placeholder="Opis trunku"></textarea>
+                        <button type="submit" name="add_drink">Dodaj</button>
                     </form>
                 </div>
                 <div class="admin-module">
-                    <h2>Edytuj trunek</h2>
-                    <form>
-                        <select name="drink">
-                            <option value="zubrowka">Wódka Żubrówka</option>
-                            <option value="jack">Whisky Jack Daniel's</option>
-                            <option value="morgan">Rum Captain Morgan</option>
-                        </select>
-                        <input type="text" placeholder="Nowa nazwa" required>
-                        <input type="text" placeholder="Nowa objętość" required>
-                        <input type="text" placeholder="Nowa zawartość alkoholu" required>
-                        <input type="text" placeholder="Nowa cena oscylacyjna" required>
-                        <textarea placeholder="Nowy opis"></textarea>
-                        <button type="submit">Zapisz zmiany</button>
-                    </form>
+                    <h2>Trunki</h2>
+                    <?php foreach($drinks as $drink): ?>
+                        <div>
+                            <strong><?= htmlspecialchars($drink['name']) ?></strong>
+                            (<?= htmlspecialchars($drink['volume']) ?>, <?= htmlspecialchars($drink['alcohol_content']) ?>, <?= htmlspecialchars($drink['price_range']) ?>)
+                            <form action="admin" method="POST" style="display:inline;">
+                                <input type="hidden" name="delete_drink_id" value="<?= $drink['id'] ?>">
+                                <button type="submit">Usuń</button>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="admin-module">
-                    <h2>Zarządzaj użytkownikami</h2>
-                    <div class="user-management">
-                        <p>Janek - <button>Usuń</button></p>
-                        <p>Anna - <button>Usuń</button></p>
-                    </div>
+                    <h2>Użytkownicy</h2>
+                    <?php foreach($users as $user): ?>
+                        <div>
+                            <?= htmlspecialchars($user['login']) ?> (<?= htmlspecialchars($user['role']) ?>)
+                            <?php if($user['role'] !== 'admin'): ?>
+                            <form action="admin" method="POST" style="display:inline;">
+                                <input type="hidden" name="delete_user_id" value="<?= $user['id'] ?>">
+                                <button type="submit">Usuń</button>
+                            </form>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>

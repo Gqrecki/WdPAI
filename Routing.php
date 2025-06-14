@@ -37,3 +37,7 @@ class Router
         $object->$action();
     }
 }
+
+Router::get('register', 'SecurityController');
+Router::post('register', 'SecurityController');
+Router::get('logout', 'SecurityController');
