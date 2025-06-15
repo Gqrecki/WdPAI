@@ -71,9 +71,9 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
                     <h2>Dodaj trunek</h2>
                     <form action="admin" method="POST">
                         <input type="text" name="name" placeholder="Nazwa trunku" required>
-                        <input type="number" name="volume" placeholder="Objętość [L]" required>
-                        <input type="number" name="alcohol_content" placeholder="Zawartość alkoholu [%]" required min="0" max="100">
-                        <input type="number" name="price_range" placeholder="Cena oscylacyjna [zł]" required>
+                        <input type="text" name="volume" placeholder="Objętość [L]" required>
+                        <input type="text" name="alcohol_content" placeholder="Zawartość alkoholu [%]" required>
+                        <input type="text" name="price_range" placeholder="Cena oscylacyjna [zł]" required>
                         <textarea name="description" placeholder="Opis trunku"></textarea>
                         <button type="submit" name="add_drink">Dodaj</button>
                     </form>
